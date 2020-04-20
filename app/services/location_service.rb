@@ -3,15 +3,15 @@ class LocationService
     get_address_json(location)
   end
 
-  def self.reverse_geocode(lat, long)
-    # require "pry"; binding.pry
-    get_latlong_json(lat, long)
+  def self.reverse_geocode(coordinates)
+    json = get_latlong_json(coordinates[:lat], coordinates[:long])
+
+    json[:results].first[:address_components][2][:long_name] + ", " + json[:results].first[:address_components][3][:long_name]
   end
 
   private
 
   def self.conn
-    # Faraday.new(url: "https://maps.googleapis.com/maps/api/geocode/json?address=#{location}&key=#{ENV["GOOGLE_API_KEY"]}")
     Faraday.new(url: "https://maps.googleapis.com/maps/api/geocode/json?key=#{ENV["GOOGLE_API_KEY"]}")
   end
 
@@ -30,8 +30,4 @@ class LocationService
 
     JSON.parse(response.body, symbolize_names: true)
   end
-
-  # rev_geo_conn = Faraday.new(url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=#{lat},#{lng}&key=#{ENV['GOOGLE_API_KEY']}")
-  #
-  # geocode_raw = JSON.parse(rev_geo_conn.get.body, symbolize_names: true)
 end
