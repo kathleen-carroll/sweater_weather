@@ -7,10 +7,6 @@ class AntipodeSerializer
      current_temperature: object.forecast.current_weather[:temp]}
   end
 
-  attribute :type do |object|
-    "antipode"
-  end
-
   attribute :location_name do |object|
     object.forecast.location_name
   end

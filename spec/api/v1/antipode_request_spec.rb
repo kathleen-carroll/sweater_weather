@@ -10,7 +10,7 @@ RSpec.describe 'Antipode Api' do
     antipode = JSON.parse(response.body)
 
     expect(antipode["data"]['attributes']["forecast"].count).to eq(2)
-    expect(antipode["data"]['attributes']["type"]).to eq('antipode')
+    expect(antipode["data"]["type"]).to eq('antipode')
     expect(antipode["data"]['attributes']["search_location"]).to eq("Hong Kong")
   end
 end
