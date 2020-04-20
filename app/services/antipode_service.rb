@@ -1,11 +1,7 @@
 class AntipodeService
 
   def self.find_antipode_coords(search_term)
-    # require "pry"; binding.pry
     get_antipode(search_term)[:data][:attributes]
-
-    # lat = json[:data][:attributes][:lat]
-    # lng = json[:data][:attributes][:long]
   end
 
   private
