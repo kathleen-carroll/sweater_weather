@@ -46,7 +46,6 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'launchy'
   gem 'pry'
-  gem 'rspec-rails'
   gem 'simplecov'
   gem 'shoulda-matchers'
   gem 'faker'
