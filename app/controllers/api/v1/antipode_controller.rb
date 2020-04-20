@@ -1,6 +1,6 @@
 class Api::V1::AntipodeController < ApplicationController
   def index
-    require "pry"; binding.pry
+    # require "pry"; binding.pry
     params[:location]
 
     location_info = LocationService.get_coordinates(params[:location])
@@ -24,5 +24,11 @@ class Api::V1::AntipodeController < ApplicationController
     geocode_raw = JSON.parse(rev_geo_conn.get.body, symbolize_names: true)
     city_name = geocode_raw[:results].first[:address_components][2][:long_name]
     country = geocode_raw[:results].first[:address_components][3][:long_name]
+
+    # require "pry"; binding.pry
+
+    forecast = WeatherService.get_forecast(city_name + ", " + country)
+
+    render json: AntipodeSerializer.new(forecast)
   end
 end
