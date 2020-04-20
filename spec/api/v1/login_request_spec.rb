@@ -19,12 +19,11 @@ RSpec.describe 'Login Api' do
     expect(user["data"]['attributes']["email"]).to eq(test_info[:email])
   end
 
-  it 'sends registered user info' do
+  it 'sends error if not registered user' do
     test_user = create(:user, email: "whatever2@example.com")
     test_info = {
       "email": "whatever@example.com",
       "password": "password",
-      "password_confirmation": "password"
       }
 
     post '/api/v1/sessions', params: test_info
@@ -35,6 +34,24 @@ RSpec.describe 'Login Api' do
     user = JSON.parse(response.body)
 
     expect(user.count).to eq(1)
-    expect(user["errors"].first).to eq("Email has already been taken")
+    expect(user["errors"]).to eq("Bad credentials")
+  end
+
+  it 'sends error if not valid password' do
+    test_user = create(:user, email: "whatever@example.com", password: "burgers")
+    test_info = {
+      "email": "whatever@example.com",
+      "password": "password",
+      }
+
+    post '/api/v1/sessions', params: test_info
+
+    expect(response.status).to eq(400)
+    expect(response).to_not be_successful
+
+    user = JSON.parse(response.body)
+
+    expect(user.count).to eq(1)
+    expect(user["errors"]).to eq("Incorrect password")
   end
 end
