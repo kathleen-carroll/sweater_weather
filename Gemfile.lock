@@ -41,6 +41,7 @@ GEM
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     arel (8.0.0)
+    bcrypt (3.1.13)
     bindex (0.8.1)
     builder (3.2.4)
     byebug (11.1.2)
@@ -253,6 +254,7 @@ PLATFORMS
   x86-mswin32
 
 DEPENDENCIES
+  bcrypt
   byebug
   capybara (>= 2.15)
   coffee-rails (~> 4.2)
