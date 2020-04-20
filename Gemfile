@@ -35,6 +35,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'fast_jsonapi'
 gem 'figaro'
 gem 'faraday'
+gem 'bcrypt'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -50,6 +51,7 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'faker'
   gem 'json'
+  gem 'webmock'
 end
 
 group :development do

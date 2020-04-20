@@ -1,0 +1,6 @@
+{:data=>
+  {:id=>"1",
+   :type=>"antipode",
+   :attributes=>{:lat=>-22.3193039, :long=>-65.8306389}
+  }
+}
