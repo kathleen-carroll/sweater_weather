@@ -10,11 +10,6 @@ class WeatherService
     end
   end
 
-  # def self.get_antipode(location_info, search_term)
-  #   require "pry"; binding.pry
-  #   location = LocationService.get_coordinates(location_info)
-  # end
-
   private
 
   def self.conn(location_info)
@@ -30,17 +25,10 @@ class WeatherService
   end
 
   def self.get_forecast_object(raw_data, location_info)
-    # response = conn(location_info).get
-    # raw_data = JSON.parse(response.body, symbolize_names: true)
-
     Forecast.new(raw_data, location_info[:results].first[:address_components])
   end
 
   def self.get_antipode_object(raw_data, location_info, search_term)
-    # response = conn(location_info).get
-    # raw_data = JSON.parse(response.body, symbolize_names: true)
-
-    # require "pry"; binding.pry
     Antipode.new(raw_data, location_info[:results].first[:address_components], search_term)
   end
 end
