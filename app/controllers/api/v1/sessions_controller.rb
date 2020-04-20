@@ -5,9 +5,9 @@ class Api::V1::SessionsController < ApplicationController
       session[:user_id] = user.id
       render json: UsersSerializer.new(user)
     elsif user
-      render json: {errors: "Incorrect password"}, status: 400
+      render json: {errors: ["Bad credentials", "Incorrect password"]}, status: 400
     else
-      render json: {errors: "Bad credentials"}, status: 400
+      render json: {errors: ["Bad credentials", "Email not registered with valid account"]}, status: 400
     end
   end
 end

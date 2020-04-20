@@ -34,7 +34,8 @@ RSpec.describe 'Login Api' do
     user = JSON.parse(response.body)
 
     expect(user.count).to eq(1)
-    expect(user["errors"]).to eq("Bad credentials")
+    expect(user["errors"].first).to eq("Bad credentials")
+    expect(user["errors"].last).to eq("Email not registered with valid account")
   end
 
   it 'sends error if not valid password' do
@@ -52,6 +53,7 @@ RSpec.describe 'Login Api' do
     user = JSON.parse(response.body)
 
     expect(user.count).to eq(1)
-    expect(user["errors"]).to eq("Incorrect password")
+    expect(user["errors"].first).to eq("Bad credentials")
+    expect(user["errors"].last).to eq("Incorrect password")
   end
 end
