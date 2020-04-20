@@ -27,7 +27,7 @@ class Api::V1::AntipodeController < ApplicationController
 
     # require "pry"; binding.pry
 
-    forecast = WeatherService.get_forecast(city_name + ", " + country)
+    forecast = WeatherService.get_forecast(city_name + ", " + country, params[:location])
 
     render json: AntipodeSerializer.new(forecast)
   end
