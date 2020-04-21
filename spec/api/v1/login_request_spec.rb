@@ -5,7 +5,7 @@ RSpec.describe 'Login Api' do
     user = create(:user, email: "whatever@example.com", password: "password")
     test_info = {
       "email": "whatever@example.com",
-      "password": "password",
+      "password": "password"
       }
 
     post '/api/v1/sessions', params: test_info
@@ -17,7 +17,7 @@ RSpec.describe 'Login Api' do
     expect(user["data"]['attributes'].count).to eq(2)
     expect(user["data"]["type"]).to eq('users')
     expect(user["data"]['attributes']["email"]).to eq(test_info[:email])
-    expect(user["data"]['attributes']["api_key"].length).to eq(36)
+    expect(user["data"]['attributes']["api_key"].length).to eq(32)
   end
 
   it 'sends error if not registered user' do
@@ -43,7 +43,7 @@ RSpec.describe 'Login Api' do
     test_user = create(:user, email: "whatever@example.com", password: "burgers")
     test_info = {
       "email": "whatever@example.com",
-      "password": "password",
+      "password": "password"
       }
 
     post '/api/v1/sessions', params: test_info
