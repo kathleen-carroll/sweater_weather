@@ -2,10 +2,11 @@ require 'rails_helper'
 
 RSpec.describe 'Road Trip Api' do
   it 'sends direction info' do
+    user = create(:user)
     test_info = {
       "origin": "Denver,CO",
       "destination": "Pueblo,CO",
-      "api_key": ENV['GOOGLE_API_KEY']
+      "api_key": user.api_key
       }
 
     post '/api/v1/road_trip', params: test_info
@@ -20,11 +21,12 @@ RSpec.describe 'Road Trip Api' do
     expect(directions["data"]['attributes']["arrival_forecast"]).to_not eq(nil)
   end
 
-  xit 'sends error if not valid api key' do
+  it 'sends error if not valid api key' do
+    user = create(:user)
     test_info = {
       "origin": "Denver,CO",
       "destination": "Pueblo,CO",
-      "api_key": ENV['']
+      "api_key": ''
       }
 
     post '/api/v1/road_trip', params: test_info
@@ -35,7 +37,7 @@ RSpec.describe 'Road Trip Api' do
     directions = JSON.parse(response.body)
 
     expect(directions.count).to eq(1)
-    expect(directions["errors"].first).to eq("Unauthorized")
+    expect(directions["errors"]).to eq("Unauthorized")
   end
 
 end
