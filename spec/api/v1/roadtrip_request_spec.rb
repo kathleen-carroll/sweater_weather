@@ -74,7 +74,7 @@ RSpec.describe 'Road Trip Api' do
     expect(response).to be_successful
 
     directions = JSON.parse(response.body)
-# require "pry"; binding.pry
+
     expect(directions["data"]['attributes'].count).to eq(4)
     expect(directions["data"]["type"]).to eq('road_trip')
     expect(directions["data"]['attributes']["origin"]).to eq(test_info[:origin])
