@@ -7,8 +7,10 @@ RSpec.describe 'Forecast Api' do
 
     expect(response).to be_successful
 
-    # forecast = JSON.parse(response.body)
+    background = JSON.parse(response.body)
 
-    # expect(forecast["data"]['attributes']["current_weather"].count).to eq(9)
+    expect(background["data"]['attributes']["search"]).to eq("denver,co")
+    expect(background["data"]['attributes'].count).to eq(2)
+    expect(background["data"]['attributes']["search"]).to_not eq(nil)
   end
 end
