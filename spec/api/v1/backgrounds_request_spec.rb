@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe 'Forecast Api' do
-  it 'sends a list of forecast' do
+RSpec.describe 'Background Api' do
+  it 'sends a background with image url' do
 
     get '/api/v1/backgrounds?location=denver,co'
 
