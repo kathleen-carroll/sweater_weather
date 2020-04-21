@@ -17,6 +17,7 @@ RSpec.describe 'Registration Api' do
     expect(user["data"]['attributes'].count).to eq(2)
     expect(user["data"]["type"]).to eq('users')
     expect(user["data"]['attributes']["email"]).to eq(test_info[:email])
+    expect(user["data"]['attributes']["api_key"].length).to eq(32)
   end
 
   it 'sends registered user info' do
