@@ -11,16 +11,26 @@ class Direction
   def get_future_forecast
     forecast = WeatherService.get_forecast(@destination)
 
-    forecast.hourly_weather.find do |hour|
-      arrival_time.strftime('%H:%M').to_i == hour[:dt].strftime('%H:%M').to_i
+    if @travel_time.split[1] == ("day" || "days")
+      forecast.hourly_weather.find do |hour|
+        (arrival_time.strftime('%H:%M').to_i == hour[:dt].strftime('%H:%M').to_i) && (arrival_time.strftime('%D') == hour[:dt].strftime('%D'))
+      end
+    else
+      forecast.hourly_weather.find do |hour|
+        arrival_time.strftime('%H:%M').to_i == hour[:dt].strftime('%H:%M').to_i
+      end
     end
   end
 
   def arrival_time
-    if @travel_time.split.count > 2
+    if @travel_time.split.count > 2 && (@travel_time.split[1] == "hours" || @travel_time.split[1] == "hour")
       hour = @travel_time.split[0].to_i
       min = @travel_time.split[2].to_i
       Time.now + hour.hours + min.minutes
+    elsif @travel_time.split.count > 2 && (@travel_time.split[1] == "days" || @travel_time.split[1] == "day")
+      day = @travel_time.split[0].to_i
+      hour = @travel_time.split[2].to_i
+      Time.now + day.days + hour.hours
     else
       min = @travel_time.split[0].to_i
       Time.now + min.minutes
