@@ -4,8 +4,8 @@ class Forecast
   def initialize(weather_data, location_data)
     @location_name = location_data.first[:long_name] + ", " + location_data[2][:short_name]
     @current_weather = get_current_weather(weather_data[:current])
-    @hourly_weather = get_hourly_weather(weather_data[:hourly][0..7])
-    @daily_weather = get_daily_weather(weather_data[:daily][0..5])
+    @hourly_weather = get_hourly_weather(weather_data[:hourly])
+    @daily_weather = get_daily_weather(weather_data[:daily])
   end
 
   def get_current_weather(raw_data)
