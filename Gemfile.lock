@@ -42,6 +42,7 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     arel (8.0.0)
     bcrypt (3.1.13)
+    bcrypt (3.1.13-java)
     bindex (0.8.1)
     builder (3.2.4)
     byebug (11.1.2)
@@ -129,8 +130,10 @@ GEM
       method_source (~> 1.0)
       spoon (~> 0.0)
     public_suffix (4.0.4)
-    puma (3.12.4)
-    puma (3.12.4-java)
+    puma (4.3.12)
+      nio4r (~> 2.0)
+    puma (4.3.12-java)
+      nio4r (~> 2.0)
     rack (2.2.2)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -268,7 +271,7 @@ DEPENDENCIES
   launchy
   listen (>= 3.0.5, < 3.2)
   pry
-  puma (~> 3.7)
+  puma (~> 4.3)
   rails (~> 5.1.7)
   rspec-rails
   sass-rails (~> 5.0)
